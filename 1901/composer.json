@@ -1,0 +1,16 @@
+{
+  "name": "dilip-parmar/1901",
+  "autoload": {
+    "psr-4": {
+      "DilipParmar\\Project2026\\App1901\\": "app/",
+      "DilipParmar\\Project2026\\Core1901\\": "core/"
+    }
+  },
+  "authors": [
+    {
+      "name": "pdilip84",
+      "email": "parmardilip2013@gmail.com"
+    }
+  ],
+  "require": {}
+}
