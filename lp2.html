@@ -1,0 +1,471 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Miami Fulfillment for Growing Brands | AmeriWorld</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css"
+    />
+    <style>
+      :root {
+        --primary: #2563eb;
+        --primary-dark: #1d4ed8;
+        --accent: #f59e0b;
+        --gray-50: #f9fafb;
+        --gray-100: #f3f4f6;
+        --gray-800: #1f2937;
+        --gray-900: #111827;
+      }
+      * {
+        font-family: "Inter", sans-serif;
+      }
+      .hero {
+        background: linear-gradient(
+          135deg,
+          var(--primary) 0%,
+          var(--primary-dark) 100%
+        );
+        color: white;
+        padding: 100px 0;
+      }
+      .hero h1 {
+        font-size: 3.5rem;
+        font-weight: 700;
+        line-height: 1.1;
+        margin-bottom: 1rem;
+      }
+      .hero .lead {
+        font-size: 1.25rem;
+        font-weight: 300;
+        opacity: 0.95;
+      }
+      .qualifier {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border-radius: 12px;
+        padding: 1.5rem;
+        margin: 2rem 0;
+      }
+      .industries {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin: 3rem 0;
+      }
+      .industry-tag {
+        background: rgba(255, 255, 255, 0.2);
+        padding: 0.75rem 1.5rem;
+        border-radius: 50px;
+        font-weight: 500;
+      }
+      .form-section {
+        background: var(--gray-50);
+        padding: 80px 0;
+      }
+      .testimonial {
+        background: white;
+        border-radius: 16px;
+        padding: 2rem;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        margin-bottom: 2rem;
+      }
+      .logos {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2rem;
+        justify-content: center;
+        align-items: center;
+        padding: 3rem 0;
+      }
+      .logo {
+        height: 50px;
+        filter: grayscale(100%);
+        opacity: 0.7;
+        transition: all 0.3s;
+      }
+      .logo:hover {
+        filter: grayscale(0%);
+        opacity: 1;
+      }
+      .facility-photos {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1.5rem;
+        margin: 3rem 0;
+      }
+      .facility-photo {
+        height: 250px;
+        background-size: cover;
+        background-position: center;
+        border-radius: 12px;
+        position: relative;
+        overflow: hidden;
+      }
+      .facility-photo::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.4);
+      }
+      .facility-photo span {
+        position: absolute;
+        bottom: 1rem;
+        left: 1rem;
+        color: white;
+        font-weight: 600;
+        z-index: 2;
+      }
+      .cta-btn {
+        background: var(--accent);
+        color: var(--gray-900);
+        font-weight: 600;
+        padding: 1rem 2rem;
+        border-radius: 12px;
+        border: none;
+        font-size: 1.1rem;
+        transition: all 0.3s;
+      }
+      .cta-btn:hover {
+        background: #d97706;
+        transform: translateY(-2px);
+      }
+      @media (max-width: 768px) {
+        .hero h1 {
+          font-size: 2.5rem;
+        }
+        .industries {
+          flex-direction: column;
+          align-items: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Hero Section -->
+    <section class="hero text-center text-white">
+      <div class="container">
+        <h1 class="display-1 fw-bold">Miami Fulfillment for Growing Brands</h1>
+        <p class="lead mb-4">
+          Scale your ecommerce operations from the heart of South Florida's
+          logistics hub.
+        </p>
+
+        <div class="qualifier mx-auto" style="max-width: 600px">
+          <i
+            class="bi bi-check-circle-fill me-2"
+            style="font-size: 1.5rem; color: var(--accent)"
+          ></i>
+          <strong>Best for brands shipping 1,000–5,000 orders/month</strong
+          ><br />
+          <small
+            >Perfect fit for high-growth DTC brands ready to optimize
+            fulfillment without enterprise complexity.</small
+          >
+        </div>
+
+        <div class="industries">
+          <div class="industry-tag">Beauty</div>
+          <div class="industry-tag">Apparel</div>
+          <div class="industry-tag">Supplements</div>
+        </div>
+
+        <a
+          href="#form"
+          class="btn cta-btn btn-lg mb-4 d-inline-flex align-items-center"
+        >
+          <i class="bi bi-calendar3 me-2"></i> Book a Call
+        </a>
+      </div>
+    </section>
+
+    <!-- Short Form -->
+    <section id="form" class="form-section">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+            <div class="text-center mb-5">
+              <h2 class="fw-bold mb-3">Ready to scale your fulfillment?</h2>
+              <p class="lead text-muted">
+                Book a 15-minute call to see how we handle your growth.
+              </p>
+            </div>
+
+            <!-- Simple Contact Form (Short Form) -->
+            <form class="row g-3 mb-5 p-4 bg-white rounded-3 shadow">
+              <div class="col-md-6">
+                <label class="form-label fw-semibold">Full Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="John Doe"
+                  required
+                />
+              </div>
+              <div class="col-md-6">
+                <label class="form-label fw-semibold">Email</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  placeholder="john@brand.com"
+                  required
+                />
+              </div>
+              <div class="col-12">
+                <label class="form-label fw-semibold">Monthly Orders</label>
+                <select class="form-select" required>
+                  <option>1,000 - 2,000</option>
+                  <option>2,000 - 3,500</option>
+                  <option>3,500 - 5,000</option>
+                </select>
+              </div>
+              <div class="col-12">
+                <label class="form-label fw-semibold">Industry</label>
+                <select class="form-select" required>
+                  <option>Beauty</option>
+                  <option>Apparel</option>
+                  <option>Supplements</option>
+                </select>
+              </div>
+              <div class="col-12">
+                <button type="submit" class="btn cta-btn w-100">
+                  <i class="bi bi-send-fill me-2"></i> Send Info & Book Call
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Proof Section: Testimonials -->
+    <section class="py-5">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4 mb-4">
+            <div class="testimonial text-center">
+              <div class="mb-3">
+                <i
+                  class="bi bi-star-fill text-warning"
+                  style="font-size: 1.5rem"
+                ></i>
+                <i
+                  class="bi bi-star-fill text-warning"
+                  style="font-size: 1.5rem"
+                ></i>
+                <i
+                  class="bi bi-star-fill text-warning"
+                  style="font-size: 1.5rem"
+                ></i>
+                <i
+                  class="bi bi-star-fill text-warning"
+                  style="font-size: 1.5rem"
+                ></i>
+                <i
+                  class="bi bi-star-fill text-warning"
+                  style="font-size: 1.5rem"
+                ></i>
+              </div>
+              <p class="mb-4">
+                "Switched to AmeriWorld and cut fulfillment costs by 28% while
+                improving delivery speed. Game changer for our beauty brand."
+              </p>
+              <strong>Sarah K., Founder</strong><br /><small
+                >@GlowEssentials</small
+              >
+            </div>
+          </div>
+          <div class="col-lg-4 mb-4">
+            <div class="testimonial text-center">
+              <div class="mb-3">
+                <i
+                  class="bi bi-star-fill text-warning"
+                  style="font-size: 1.5rem"
+                ></i
+                ><i
+                  class="bi bi-star-fill text-warning"
+                  style="font-size: 1.5rem"
+                ></i
+                ><i
+                  class="bi bi-star-fill text-warning"
+                  style="font-size: 1.5rem"
+                ></i
+                ><i
+                  class="bi bi-star-fill text-warning"
+                  style="font-size: 1.5rem"
+                ></i
+                ><i
+                  class="bi bi-star-fill text-warning"
+                  style="font-size: 1.5rem"
+                ></i>
+              </div>
+              <p class="mb-4">
+                "Handling 3K+ apparel orders/month flawlessly. Miami location
+                means 2-day shipping nationwide."
+              </p>
+              <strong>Mike R., CEO</strong><br /><small>@UrbanThread</small>
+            </div>
+          </div>
+          <div class="col-lg-4 mb-4">
+            <div class="testimonial text-center">
+              <div class="mb-3">
+                <i
+                  class="bi bi-star-fill text-warning"
+                  style="font-size: 1.5rem"
+                ></i
+                ><i
+                  class="bi bi-star-fill text-warning"
+                  style="font-size: 1.5rem"
+                ></i
+                ><i
+                  class="bi bi-star-fill text-warning"
+                  style="font-size: 1.5rem"
+                ></i
+                ><i
+                  class="bi bi-star-fill text-warning"
+                  style="font-size: 1.5rem"
+                ></i
+                ><i
+                  class="bi bi-star-fill text-warning"
+                  style="font-size: 1.5rem"
+                ></i>
+              </div>
+              <p class="mb-4">
+                "Supplements fulfillment at scale. Custom kitting, compliance,
+                and white-glove service."
+              </p>
+              <strong>Lisa M., Operations</strong><br /><small
+                >@VitalCore</small
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Client Logos -->
+    <section class="bg-light py-5">
+      <div class="container">
+        <h3 class="text-center fw-bold mb-5">Trusted by growing DTC brands</h3>
+        <div class="logos">
+          <img
+            src="https://via.placeholder.com/120x50/2563eb/ffffff?text=Glow+Essentials"
+            alt="Glow Essentials"
+            class="logo"
+          />
+          <img
+            src="https://via.placeholder.com/120x50/f59e0b/ffffff?text=Urban+Thread"
+            alt="Urban Thread"
+            class="logo"
+          />
+          <img
+            src="https://via.placeholder.com/120x50/10b981/ffffff?text=Vital+Core"
+            alt="Vital Core"
+            class="logo"
+          />
+          <img
+            src="https://via.placeholder.com/120x50/ef4444/ffffff?text=Pure+Skin"
+            alt="Pure Skin"
+            class="logo"
+          />
+          <img
+            src="https://via.placeholder.com/120x50/8b5cf6/ffffff?text=Active+Life"
+            alt="Active Life"
+            class="logo"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- Facility Photos -->
+    <section class="py-5">
+      <div class="container">
+        <div class="text-center mb-5">
+          <h2 class="fw-bold mb-3">
+            **Miami Facility: 50K+ sq ft of fulfillment power**
+          </h2>
+          <p class="lead text-muted">
+            State-of-the-art picking, packing, and shipping from South Florida's
+            logistics gateway.
+          </p>
+        </div>
+        <div class="facility-photos">
+          <div
+            class="facility-photo"
+            style="
+              background-image: url(&quot;https://images.unsplash.com/photo-1586528116311-295c1d30d1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80&quot;);
+            "
+          >
+            <span>Automated Picking Systems</span>
+          </div>
+          <div
+            class="facility-photo"
+            style="
+              background-image: url(&quot;https://images.unsplash.com/photo-1558618047-3c8c76fdd7f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80&quot;);
+            "
+          >
+            <span>Climate-Controlled Storage</span>
+          </div>
+          <div
+            class="facility-photo"
+            style="
+              background-image: url(&quot;https://images.unsplash.com/photo-1580820675251-cdee291dc18e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80&quot;);
+            "
+          >
+            <span>High-Volume Packing Lines</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="bg-dark text-white py-5 text-center">
+      <div class="container">
+        <h2 class="fw-bold mb-3">**Ready to grow faster?**</h2>
+        <p class="lead mb-4">
+          Join 50+ DTC brands shipping from Miami with AmeriWorld.
+        </p>
+        <a href="#form" class="btn cta-btn btn-lg">
+          <i class="bi bi-arrow-up me-2"></i> **Book Your Call Now**
+        </a>
+        <div class="mt-4">
+          <a href="https://www.ameriworld.com/" class="text-white-50"
+            >← Back to AmeriWorld.com</a
+          >
+        </div>
+      </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      // Smooth scrolling
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          document
+            .querySelector(this.getAttribute("href"))
+            .scrollIntoView({ behavior: "smooth" });
+        });
+      });
+
+      // Form submission (demo)
+      document.querySelector("form").addEventListener("submit", function (e) {
+        e.preventDefault();
+        alert("Thanks! We'll follow up within 24 hours to confirm your call.");
+      });
+    </script>
+  </body>
+</html>

@@ -11,7 +11,7 @@ columns:
   password: string
 
 seeds:
-  count: 5
+  count: 20
   truncate: true
   data:
     name: "@faker.name"
