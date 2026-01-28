@@ -37,4 +37,22 @@ class MembersController extends Controller
             ->redirect('/members');
         }
     }
+    public function edit($id){
+        $member = Member::find($id);
+        response()->render('pages/members-edit', ['member' => $member]);
+    }
+    public function update($id){
+        $member = Member::find($id);
+        if($member){
+           $member->name = request()->get('name');
+           $member->save();
+           response()
+            ->withFlash('success', 'Member updated successfully.')
+            ->redirect('/members');
+        } else {
+            response()
+            ->withFlash('error', 'Member not found.')
+            ->redirect('/members');
+        }
+    }
 }
