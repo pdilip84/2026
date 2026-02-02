@@ -10,6 +10,7 @@
     ],
     "license": "MIT",
     "require": {
+        "php": ">=8.1",
         "leafs/blade": "^4.0",
         "leafs/mvc-core": "^4.0",
         "leafs/leaf": "^4.0",
@@ -20,7 +21,9 @@
     },
     "require-dev": {
         "fakerphp/faker": "^1.24",
-        "leafs/alchemy": "^4.0"
+        "leafs/alchemy": "^4.0",
+        "friendsofphp/php-cs-fixer": "^3.93",
+        "pestphp/pest": "*"
     },
     "autoload": {
         "psr-4": {

@@ -23,6 +23,15 @@
             </div>
         </div>
     @endif  
+    <div class="py-2 px-4">
+        <div class="overflow-hidden shadow-sm sm:rounded-lg bg-white">
+            <div class="p-6 text-gray-900">
+                <p class="button mt-2 inline-block bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">
+                    <a href="/members/add">Add New Member</a>
+                </p>
+            </div>
+        </div>
+    </div>  
     @foreach($members as $member)
         <div class="py-2 px-4">
             <div class="overflow-hidden shadow-sm sm:rounded-lg bg-white">
