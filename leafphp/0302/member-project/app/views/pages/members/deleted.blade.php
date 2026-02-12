@@ -2,8 +2,8 @@
 'title' => 'Members',
 'breadcrumbs' => [
 [
-'title' => 'Members',
-'href' => '/members',
+'title' => 'Deleted Members',
+'href' => '/members/deleted',
 ]
 ]
 ])
@@ -11,7 +11,7 @@
 @section('content')
 <div class="py-4 px-4">
     <div class="overflow-hidden shadow-sm sm:rounded-lg bg-black">
-        <div class="p-6 text-gray-100">List of all members</div>
+        <div class="p-6 text-gray-100">List of all deleted members</div>
     </div>
 </div>
 @if (isset($error))
@@ -48,21 +48,31 @@
             <td class="border px-4 py-2">
                 <a href="/members/show/{{ $member->id }}" class="text-blue-500 hover:underline">View</a>
             </td>
-            <td class="border px-4 py-2">
+            <!-- <td class="border px-4 py-2">
                 <form action="/members/delete/{{ $member->id }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this member?');">
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="text-red-500 hover:underline">Delete</button>
                 </form>
+            </td> -->
+            <td class="border px-4 py-2">
+                <form action="/members/restore/{{ $member->id }}" method="POST" onsubmit="return confirm('Are you sure you want to restore this member?');">
+                    @csrf
+                    <button type="submit" class="text-green-500 hover:underline">Restore</button>
+                </form>
             </td>
             <td class="border px-4 py-2">
-                <a href="/members/edit/{{ $member->id }}" class="text-yellow-500 hover:underline">Edit</a>
+                <form action="/members/force-delete/{{ $member->id }}" method="POST" onsubmit="return confirm('Are you sure you want to permanently delete this member?');">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="text-red-700 hover:underline">Force Delete</button>
+                </form>
             </td>
         </tr>
         @endforeach
     </tbody>
 </table>
 <button class="mt-4">
-    <a href="/members/deleted" class="text-blue-500 hover:underline">Deleted Members List</a>
+    <a href="/members" class="  text-blue-500 hover:underline">Back to Members List</a>
 </button>
 @endsection

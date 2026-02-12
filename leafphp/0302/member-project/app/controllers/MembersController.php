@@ -20,6 +20,31 @@ class MembersController extends Controller
         // var_dump($member);
         response()->render('pages/members/show', ['member' => $member]);
     }
+    public function showDeleted()
+    {
+        $members = Member::onlyTrashed()->get();
+        response()->render('pages/members/deleted', ['members' => $members]);
+    }
+    public function restore($id)
+    {
+        $member = Member::onlyTrashed()->find($id);
+        if ($member) {
+            $member->restore();
+            response()->render('pages/members/deleted', ['success' => 'Member restored successfully!', 'members' => Member::onlyTrashed()->get()]);
+        } else {
+            response()->render('pages/members/deleted', ['error' => 'Member not found.', 'members' => Member::onlyTrashed()->get()]);
+        }
+    }
+    public function forceDelete($id)
+    {
+        $member = Member::onlyTrashed()->find($id);
+        if ($member) {
+            $member->forceDelete();
+            response()->render('pages/members/deleted', ['success' => 'Member permanently deleted successfully!', 'members' => Member::onlyTrashed()->get()]);
+        } else {
+            response()->render('pages/members/deleted', ['error' => 'Member not found.', 'members' => Member::onlyTrashed()->get()]);
+        }
+    }
     public function create()
     {
         response()->render('pages/members/create');

@@ -1,6 +1,7 @@
 # schema files add auto-increments and timestamps automatically
 
 # you can add all the columns you want under the columns key
+soft_deletes: true
 columns:
   name: string
   email:
@@ -24,6 +25,9 @@ columns:
     type: string
     unique: true
   verified_at:
+    type: timestamp
+    nullable: true
+  deleted_at:
     type: timestamp
     nullable: true
 
