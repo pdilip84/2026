@@ -15,7 +15,7 @@ class MembersController extends Controller
     }
     public function show($id)
     {
-        $member = Member::find($id);
+        $member = Member::withTrashed()->find($id);
 
         // var_dump($member);
         response()->render('pages/members/show', ['member' => $member]);
@@ -82,6 +82,7 @@ class MembersController extends Controller
             $member->phone = $phone;
             $member->status = $status;
             $member->notes = $notes;
+            $member->user_id = auth()->id(); // Assuming you have an authentication system in place
             $member->identifier = $identifier;
 
             try {

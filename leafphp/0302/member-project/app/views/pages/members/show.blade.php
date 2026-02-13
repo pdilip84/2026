@@ -1,21 +1,20 @@
 @extends('layouts.app-layout', [
-    'title' => 'Members',
-    'breadcrumbs' => [
-        [
-            'title' => 'Members',
-            'href' => '/members/show/' . $member->id,
-        ]
-    ]
+'title' => 'Members',
+'breadcrumbs' => [
+[
+'title' => 'Members',
+'href' => '/members/show/' . $member->id,
+]
+]
 ])
 
 @section('content')
-    <div class="py-4 px-4">
-        <div class="overflow-hidden shadow-sm sm:rounded-lg bg-black">
-            <div class="p-6 text-gray-100">Member Details for {{ $member->name }}</div>
-        </div>
+<div class="py-4 px-4">
+    <div class="overflow-hidden shadow-sm sm:rounded-lg bg-black">
+        <div class="p-6 text-gray-100">Member Details for {{ $member->name }}</div>
     </div>
     <table class="table-auto w-full text-left">
-       <tbody></tbody>
+        <tbody>
             <tr>
                 <td class="border px-4 py-2">ID:</td>
                 <td class="border px-4 py-2">{{ $member->id }}</td>
@@ -45,6 +44,10 @@
                 <td class="border px-4 py-2">{{ $member->identifier }}</td>
             </tr>
             <tr>
+                <td class="border px-4 py-2">Verified At:</td>
+                <td class="border px-4 py-2">{{ $member->verified_at ? $member->verified_at->format('Y-m-d H:i:s') : 'Not verified' }}</td>
+            </tr>
+            <tr>
                 <td class="border px-4 py-2">Created:</td>
                 <td class="border px-4 py-2">{{ $member->created_at }}</td>
             </tr>
@@ -52,9 +55,13 @@
                 <td class="border px-4 py-2">Updated:</td>
                 <td class="border px-4 py-2">{{ $member->updated_at }}</td>
             </tr>
+            <tr>
+                <td class="border px-4 py-2">Deleted:</td>
+                <td class="border px-4 py-2">{{ $member->deleted_at ? $member->deleted_at->format('Y-m-d H:i:s') : 'Not deleted' }}</td>
+            </tr>
         </tbody>
     </table>
-    <button>
+    <button class="mt-4">
         <a href="/members" class="text-blue-500 hover:underline">Back to Members List</a>
     </button>
-@endsection
+    @endsection

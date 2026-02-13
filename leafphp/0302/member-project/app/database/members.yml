@@ -3,7 +3,9 @@
 # you can add all the columns you want under the columns key
 soft_deletes: true
 columns:
-  name: string
+  name:
+    type: string
+    nullable: false
   email:
     type: string
     unique: true
@@ -30,6 +32,8 @@ columns:
   deleted_at:
     type: timestamp
     nullable: true
+relationships:
+  - User
 
 # you can add foreign ids for other models under the relationships key key
 # relationships:
@@ -46,4 +50,5 @@ seeds:
     status: "pending"
     notes: "@faker.text"
     identifier: "@faker.unique.uuid"
+    user_id: 6
     verified_at: null
