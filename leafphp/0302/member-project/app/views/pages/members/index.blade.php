@@ -46,7 +46,7 @@
             <td class="border px-4 py-2">{{ $member->name }}</td>
             <td class="border px-4 py-2">{{ $member->email }}</td>
             <td class="border px-4 py-2">{{ $member->phone }}</td>
-            <td class="border px-4 py-2">{{ $member->user_id }}</td>
+            <td class="border px-4 py-2">{{ $member->user->name ?? 'Unknown User' }}</td>
             <td class="border px-4 py-2">
                 <a href="/members/show/{{ $member->id }}" class="text-blue-500 hover:underline">View</a>
             </td>
