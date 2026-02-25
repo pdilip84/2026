@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1e8676aaad1885cd8e07e0bb6dcd229a",
+    "content-hash": "6856ee270e3b51953e1b77df14294bb8",
     "packages": [
         {
             "name": "brick/math",
@@ -1536,6 +1536,71 @@
                 }
             ],
             "time": "2025-04-28T20:40:36+00:00"
+        },
+        {
+            "name": "leafs/devtools",
+            "version": "v0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/leafsphp/devtools.git",
+                "reference": "b9371229a0fd944783affef5b65068ebd407836b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/leafsphp/devtools/zipball/b9371229a0fd944783affef5b65068ebd407836b",
+                "reference": "b9371229a0fd944783affef5b65068ebd407836b",
+                "shasum": ""
+            },
+            "require": {
+                "leafs/leaf": "*"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^3.0",
+                "pestphp/pest": "^1.21",
+                "symfony/var-dumper": "^6.2"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "src/functions.php"
+                ],
+                "psr-4": {
+                    "Leaf\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Michael Darko",
+                    "email": "mickdd22@gmail.com",
+                    "homepage": "https://mychi.netlify.app",
+                    "role": "Developer"
+                }
+            ],
+            "description": "DevTools server-side hook for Leaf PHP",
+            "homepage": "https://leafphp.dev/modules/devtools/",
+            "keywords": [
+                "Devtools",
+                "chrome"
+            ],
+            "support": {
+                "issues": "https://github.com/leafsphp/devtools/issues",
+                "source": "https://github.com/leafsphp/devtools/tree/v0.1.0"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/leafsphp",
+                    "type": "github"
+                },
+                {
+                    "url": "https://opencollective.com/leaf",
+                    "type": "open_collective"
+                }
+            ],
+            "time": "2023-05-10T12:36:28+00:00"
         },
         {
             "name": "leafs/exception",
@@ -8934,9 +8999,7 @@
     "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,
-    "platform": {
-        "php": ">=8.1"
-    },
+    "platform": [],
     "platform-dev": [],
     "plugin-api-version": "2.2.0"
 }
