@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration
 {
     /**
-     * Run the migrations.
+     * Run the migrations. php artisan migrate
      */
     public function up(): void
     {
@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->boolean('is_premium')->default(false);
             $table->rememberToken();
             $table->timestamps();
         });
@@ -38,7 +39,7 @@ return new class extends Migration
     }
 
     /**
-     * Reverse the migrations.
+     * Reverse the migrations. php artisan migrate:rollback
      */
     public function down(): void
     {

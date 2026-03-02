@@ -22,6 +22,10 @@ class DatabaseSeeder extends Seeder
             'email' => 'test@example.com',
         ]);
 
+        User::factory(3)->unverified()->create();
+
+        User::factory(2)->premium()->create();
+
         $this->call(MemberSeeder::class);
     }
 }
