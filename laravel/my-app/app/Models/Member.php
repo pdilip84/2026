@@ -13,11 +13,12 @@ class Member extends Model
     // use SoftDeletes;
     // use HasUlids;
 
-    // protected $fillable = [
-    //     'name',
-    //     'email',
-    //     'phone',
-    //     'status',
-    //     'note',
-    // ];
+    protected $fillable = [
+        'name',
+        'email',
+        'phone',
+        'status',
+        'note',
+        'ulid',
+    ];
 }

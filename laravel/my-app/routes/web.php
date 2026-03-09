@@ -21,8 +21,12 @@ require __DIR__ . '/auth.php';
 
 Route::get('/members', [App\Http\Controllers\MemberController::class, 'index'])->name('members.index');
 
+Route::get('/members/create', [App\Http\Controllers\MemberController::class, 'create'])->name('members.create');
+
 Route::get('/members/{id}', [App\Http\Controllers\MemberController::class, 'show'])->name('members.show');
 
 Route::get('/members/{id}/edit', [App\Http\Controllers\MemberController::class, 'edit'])->name('members.edit');
 
 Route::delete('/members/{id}', [App\Http\Controllers\MemberController::class, 'destroy'])->name('members.destroy');
+
+Route::post('/members', [App\Http\Controllers\MemberController::class, 'store'])->name('members.store');

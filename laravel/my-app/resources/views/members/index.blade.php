@@ -5,10 +5,18 @@
         </h2>
     </x-slot>
     <div class="py-12">
+        @if(session('success'))
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mt-4">
+            <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
+                <strong class="font-bold">Success!</strong>
+                <span class="block sm:inline">{{ session('success') }}</span>
+            </div>
+        </div>
+        @endif
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mt-4">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                    <a href="{{ route('dashboard') }}" class="text-green-600 hover:text-green-900">Add New Member</a>
+                    <a href="{{ route('members.create') }}" class="text-green-600 hover:text-green-900">Add New Member</a>
                 </div>
             </div>
         </div>

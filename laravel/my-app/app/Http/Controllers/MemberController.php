@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Member;
 use Illuminate\Http\Request;
+use Symfony\Component\Uid\Ulid;
 
 class MemberController extends Controller
 {
@@ -15,9 +16,10 @@ class MemberController extends Controller
         return view('members.index', compact('members'));
     }
 
-    public function show($id)
+    public function show($uid)
     {
-        $member = Member::findOrFail($id);
+        $member = Member::findOrFail($uid);
+
 
         return view('members.show', compact('member'));
     }
@@ -35,5 +37,32 @@ class MemberController extends Controller
         $member->delete();
 
         return redirect()->route('members.index')->with('success', 'Member deleted successfully.');
+    }
+
+    public function create()
+    {
+        return view('members.create');
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:20',
+            'email' => 'required|email|unique:members,email|max:50',
+            'phone' => 'required|string|max:30|unique:members,phone',
+            'status' => 'required|in:active,inactive',
+            'note' => 'nullable|string',
+        ]);
+
+        Member::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'status' => $request->status,
+            'note' => $request->note,
+            'ulid' => (new Ulid())->toBase32(),
+        ]);
+
+        return redirect()->route('members.index')->with('success', 'Member created successfully.');
     }
 }
