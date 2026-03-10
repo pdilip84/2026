@@ -65,4 +65,27 @@ class MemberController extends Controller
 
         return redirect()->route('members.index')->with('success', 'Member created successfully.');
     }
+
+    public function update(Request $request, $id)
+    {
+        $member = Member::findOrFail($id);
+
+        $request->validate([
+            'name' => 'required|string|max:20',
+            'email' => 'required|email|unique:members,email,' . $member->id . '|max:50',
+            'phone' => 'required|string|max:30|unique:members,phone,' . $member->id,
+            'status' => 'required|in:active,inactive',
+            'note' => 'nullable|string',
+        ]);
+
+        $member->update([
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'status' => $request->status,
+            'note' => $request->note,
+        ]);
+
+        return redirect()->route('members.show', $member->id)->with('success', 'Member updated successfully.');
+    }
 }

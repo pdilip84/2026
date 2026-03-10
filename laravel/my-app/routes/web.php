@@ -30,3 +30,5 @@ Route::get('/members/{id}/edit', [App\Http\Controllers\MemberController::class, 
 Route::delete('/members/{id}', [App\Http\Controllers\MemberController::class, 'destroy'])->name('members.destroy');
 
 Route::post('/members', [App\Http\Controllers\MemberController::class, 'store'])->name('members.store');
+
+Route::put('/members/{id}', [App\Http\Controllers\MemberController::class, 'update'])->name('members.update');
