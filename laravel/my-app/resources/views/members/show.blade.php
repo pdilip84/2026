@@ -14,6 +14,8 @@
                     <p class="mt-1 text-sm text-gray-500">Phone: {{ $member->phone }}</p>
                     <p class="mt-1 text-sm text-gray-500">Status: {{ $member->status }}</p>
                     <p class="mt-1 text-sm text-gray-500">Note: {{ $member->note }}</p>
+                    <p class="mt-1 text-sm text-gray-500">Created At: {{ $member->created_at->format('Y-m-d H:i') }}</p>
+                    <p class="mt-1 text-sm text-gray-500">Updated At: {{ $member->updated_at->format('Y-m-d H:i') }}</p>
                 </div>
             </div>
         </div>
