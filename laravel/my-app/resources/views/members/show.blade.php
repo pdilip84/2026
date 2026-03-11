@@ -22,6 +22,9 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mt-4">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
+                    <a href="{{ route('members.edit', $member->id) }}" class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                </div>
+                <div class="p-6 text-gray-900 dark:text-gray-100">
                     <a href="{{ route('members.index') }}" class="text-indigo-600 hover:text-indigo-900">Back to Members List</a>
                 </div>
             </div>

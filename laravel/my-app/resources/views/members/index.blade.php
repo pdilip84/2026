@@ -28,9 +28,9 @@
                             {{ $members->links() }}
                         </div>
                         <div class="p-6 text-gray-900 dark:text-gray-100">
-                            <table class="min-w-full divide-y divide-gray-200">
+                            <table class="w-full divide-y divide-gray-200">
                                 <thead>
-                                    <tr>
+                                    <tr class="border border-gray-300">
                                         <th class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
                                         <th class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
                                         <th class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Phone</th>
@@ -41,19 +41,19 @@
                                 </thead>
                                 <tbody class="bg-white divide-y divide-gray-200">
                                     @foreach($members as $member)
-                                    <tr>
+                                    <tr class="border border-gray-300 ">
                                         <td class="px-6 py-4 whitespace-nowrap">{{ $member->name }}</td>
                                         <td class="px-6 py-4 whitespace-nowrap">{{ $member->email }}</td>
                                         <td class="px-6 py-4 whitespace-nowrap">{{ $member->phone }}</td>
                                         <td class="px-6 py-4 whitespace-nowrap">{{ $member->status }}</td>
                                         <td class="px-6 py-4 whitespace-nowrap">{{ $member->note }}</td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                        <td class="px-2 py-4 whitespace-nowrap text-right text-sm font-medium">
                                             <a href="{{ route('members.show', $member->id) }}" class="text-indigo-600 hover:text-indigo-900">View</a>
                                         </td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                        <td class="px-2 py-4 whitespace-nowrap text-right text-sm font-medium">
                                             <a href="{{ route('members.edit', $member->id) }}" class="text-green-600 hover:text-green-900">Edit</a>
                                         </td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                        <td class="px-2 py-4 whitespace-nowrap text-right text-sm font-medium">
                                             <form action="{{ route('members.destroy', $member->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this member?');">
                                                 @csrf
                                                 @method('DELETE')
