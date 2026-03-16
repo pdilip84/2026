@@ -24,5 +24,11 @@ class DatabaseSeeder extends Seeder
         User::factory(3)->create();
 
         \App\Models\Member::factory(10)->create();
+
+        \App\Models\Book::factory(10)->create();
+
+        \App\Models\Review::factory(20)->good()->create();
+        \App\Models\Review::factory(20)->bad()->create();
+        \App\Models\Review::factory(20)->average()->create();
     }
 }
