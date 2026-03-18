@@ -7,10 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Book extends Model
 {
+    /** @use HasFactory<\Database\Factories\BookFactory> */
     use HasFactory;
-
-    public function reviews()
-    {
-        return $this->hasMany(Review::class);
-    }
 }

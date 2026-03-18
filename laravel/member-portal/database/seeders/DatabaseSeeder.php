@@ -21,14 +21,11 @@ class DatabaseSeeder extends Seeder
             'name' => 'Test User',
             'email' => 'test@example.com',
         ]);
-        User::factory(3)->create();
+        User::factory(30)->create();
 
-        \App\Models\Member::factory(10)->create();
+        \App\Models\Member::factory(100)->create();
 
-        \App\Models\Book::factory(10)->create();
-
-        \App\Models\Review::factory(20)->good()->create();
-        \App\Models\Review::factory(20)->bad()->create();
-        \App\Models\Review::factory(20)->average()->create();
+        \App\Models\Book::factory(50)->create();
+        \App\Models\Review::factory(100)->create();
     }
 }

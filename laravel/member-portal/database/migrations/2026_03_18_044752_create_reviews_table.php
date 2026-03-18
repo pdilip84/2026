@@ -14,9 +14,11 @@ return new class extends Migration
         Schema::create('reviews', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('book_id');
-            $table->string('reviewer_name');
-            $table->text('review_text');
+            $table->unsignedBigInteger('member_id');
+            $table->integer('rating');
+            $table->text('comment')->nullable();
             $table->foreign('book_id')->references('id')->on('books')->onDelete('cascade');
+            $table->foreign('member_id')->references('id')->on('members')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -18,38 +18,10 @@ class ReviewFactory extends Factory
     public function definition(): array
     {
         return [
-            //
-            /* create book_id, between 1 and 10 */
-            'book_id' => $this->faker->numberBetween(1, 10),
-            'reviewer_name' => $this->faker->name,
-            'review_text' => $this->faker->paragraph,
+            'book_id' => \App\Models\Book::factory(),
+            'member_id' => \App\Models\Member::factory(),
+            'rating' => $this->faker->numberBetween(1, 5),
+            'comment' => $this->faker->optional()->paragraph(),
         ];
-    }
-    public function good()
-    {
-        return $this->state(function (array $attributes) {
-            return [
-                'reviewer_name' => $this->faker->name,
-                'review_text' => 'This book was fantastic! Highly recommended.',
-            ];
-        });
-    }
-    public function bad()
-    {
-        return $this->state(function (array $attributes) {
-            return [
-                'reviewer_name' => $this->faker->name,
-                'review_text' => 'This book was terrible. Do not waste your time.',
-            ];
-        });
-    }
-    public function average()
-    {
-        return $this->state(function (array $attributes) {
-            return [
-                'reviewer_name' => $this->faker->name,
-                'review_text' => 'This book was okay. Not great, but not bad either.',
-            ];
-        });
     }
 }
