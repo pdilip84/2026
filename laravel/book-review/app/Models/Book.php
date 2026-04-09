@@ -30,4 +30,31 @@ class Book extends Model
             $subQuery->where('rating', 5);
         })->distinct();
     }
+
+    public function scopeAuthorDr($query)
+    {
+        return $query->where('author', 'like', '%Dr.%');
+    }
+
+    /*
+    SELECT reviews.book_id, count(reviews.rating) as total
+    FROM reviews
+    GROUP BY reviews.book_id
+    ORDER BY total DESC;
+    */
+    public function scopeMostReviewedBooks($query)
+    {
+        return $query->withCount('reviews')->orderBy('reviews_count', 'desc');
+    }
+
+    /*
+    SELECT reviews.book_id, AVG(reviews.rating) as avg_rating, count(reviews.rating) as total_reviews
+    FROM reviews
+    GROUP BY reviews.book_id
+    ORDER BY avg_rating DESC;
+    */
+    public function scopeHighestRatedBooks($query)
+    {
+        return $query->withAvg('reviews', 'rating')->orderBy('reviews_avg_rating', 'desc');
+    }
 }
