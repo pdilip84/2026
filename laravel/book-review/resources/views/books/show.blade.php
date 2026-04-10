@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Books') }}
+            {{ __('Books Show') }}
         </h2>
     </x-slot>
     <div class="py-12">
@@ -20,7 +20,7 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <a href="{{ route('books.index') }}" class="text-blue-500 hover:underline ">Back to Book List</a>
                     <a href="{{ route('books.edit', $book->id) }}" class="text-blue-500 hover:underline ml-4 px-4">Edit Book</a>
-                    <form action="{{ route('books.destroy', $book->id) }}" method="POST" class="inline-block">
+                    <form action="{{ route('books.destroy', $book) }}" method="POST" class="inline-block">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="text-red-500 hover:underline ml-4">Delete Book</button>

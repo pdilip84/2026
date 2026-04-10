@@ -10,9 +10,18 @@ class BookController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $books = Book::select(['id', 'title', 'author', 'published_date'])->paginate(20);
+        if ($request->has('search')) {
+            $search = $request->input('search');
+            $books = Book::where('title', 'like', "%{$search}%")
+                ->orWhere('author', 'like', "%{$search}%")
+                ->select(['id', 'title', 'author', 'published_date'])
+                ->paginate(20);
+        } else {
+            $books = Book::select(['id', 'title', 'author', 'published_date'])->paginate(20);
+        }
+        // $books = Book::select(['id', 'title', 'author', 'published_date'])->paginate(20);
         return view('books.index', compact('books'));
     }
 
@@ -59,8 +68,10 @@ class BookController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Book $book)
     {
-        //
+        // $book = Book::findOrFail($id);
+        $book->delete();
+        return redirect()->route('books.index')->with('success', 'Book deleted successfully.');
     }
 }

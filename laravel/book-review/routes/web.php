@@ -22,11 +22,14 @@ require __DIR__ . '/auth.php';
 
 /*
 Action	Route Name	URL
+
 index	books.index	/books
+show	books.show	/books/{id}
+destroy	books.destroy	/books/{id}
+
+edit	books.edit	/books/{id}/edit
 create	books.create	/books/create
 store	books.store	/books
-show	books.show	/books/{id}
-edit	books.edit	/books/{id}/edit
 update	books.update	/books/{id}
 */
 Route::resource('books', BookController::class);
