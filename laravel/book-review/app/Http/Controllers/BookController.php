@@ -12,16 +12,55 @@ class BookController extends Controller
      */
     public function index(Request $request)
     {
-        if ($request->has('search')) {
+        // dd($request->all());
+        // if ($request->has('filter')) {
+        //     $filter = $request->input('filter');
+        //     // dd($filter);
+        //     if ($filter === 'highest_reviewed') {
+        //         $books = Book::mostReviewedBooks()->paginate(20);
+        //     } elseif ($filter === 'highest_rated') {
+        //         $books = Book::highestRatedBooks()->paginate(20);
+        //     } else {
+        //         $books = Book::select(['id', 'title', 'author', 'published_date'])->paginate(20);
+        //     }
+        // } else if ($request->has('search')) {
+        //     $search = $request->input('search');
+        //     $books = Book::where('title', 'like', "%{$search}%")
+        //         ->orWhere('author', 'like', "%{$search}%")
+        //         ->select(['id', 'title', 'author', 'published_date'])
+        //         ->paginate(20);
+        // } else {
+        //     $books = Book::select(['id', 'title', 'author', 'published_date'])->paginate(20);
+        // }
+
+        $query = Book::query()->select(['id', 'title', 'author', 'published_date']);
+
+        // Apply search (if exists)
+        if ($request->filled('search')) {
             $search = $request->input('search');
-            $books = Book::where('title', 'like', "%{$search}%")
-                ->orWhere('author', 'like', "%{$search}%")
-                ->select(['id', 'title', 'author', 'published_date'])
-                ->paginate(20);
-        } else {
-            $books = Book::select(['id', 'title', 'author', 'published_date'])->paginate(20);
+
+            $query->where(function ($q) use ($search) {
+                $q->where('title', 'like', "%{$search}%")
+                    ->orWhere('author', 'like', "%{$search}%");
+            });
         }
-        // $books = Book::select(['id', 'title', 'author', 'published_date'])->paginate(20);
+        // Apply filter (if exists)
+        if ($request->filled('filter')) {
+            $filter = $request->input('filter');
+
+            if ($filter === 'highest_reviewed') {
+                $query->mostReviewedBooks(); // scope
+            } elseif ($filter === 'highest_rated') {
+                $query->highestRatedBooks(); // scope
+            }
+        }
+        // Default ordering (optional)
+        if (!$request->filled('filter')) {
+            $query->latest(); // or any default order
+        }
+
+        $books = $query->paginate(20);
+
         return view('books.index', compact('books'));
     }
 
