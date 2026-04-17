@@ -12,27 +12,7 @@ class BookController extends Controller
      */
     public function index(Request $request)
     {
-        // dd($request->all());
-        // if ($request->has('filter')) {
-        //     $filter = $request->input('filter');
-        //     // dd($filter);
-        //     if ($filter === 'highest_reviewed') {
-        //         $books = Book::mostReviewedBooks()->paginate(20);
-        //     } elseif ($filter === 'highest_rated') {
-        //         $books = Book::highestRatedBooks()->paginate(20);
-        //     } else {
-        //         $books = Book::select(['id', 'title', 'author', 'published_date'])->paginate(20);
-        //     }
-        // } else if ($request->has('search')) {
-        //     $search = $request->input('search');
-        //     $books = Book::where('title', 'like', "%{$search}%")
-        //         ->orWhere('author', 'like', "%{$search}%")
-        //         ->select(['id', 'title', 'author', 'published_date'])
-        //         ->paginate(20);
-        // } else {
-        //     $books = Book::select(['id', 'title', 'author', 'published_date'])->paginate(20);
-        // }
-
+        // Start with base query
         $query = Book::query()->select(['id', 'title', 'author', 'published_date']);
 
         // Apply search (if exists)
@@ -60,6 +40,31 @@ class BookController extends Controller
         }
 
         $books = $query->paginate(20);
+
+        // Cache the paginated results for 1 hour (3600 seconds) using default database cache store
+
+        // $books = cache()->store('database')->remember('books_index_1', 3600, function () use ($query) {
+        //     return $query->paginate(20);
+        // });
+
+        // let us demonstrate file cache store for the same query
+        // $books = cache()->store('file')->remember('books_index_1', 3600, function () use ($query) {
+        //     return $query->paginate(20);
+        // });
+
+        // let us demonstrate memcached cache store for the same query
+        // this required memcached server to be installed and configured in the .env file
+
+        // $books = cache()->store('memcached')->remember('books_index_1', 3600, function () use ($query) {
+        //     return $query->paginate(20);
+        // });
+
+        // demonstrate redis cache store for the same query
+        // this required redis server to be installed and configured in the .env file
+
+        // $books = cache()->store('redis')->remember('books_index_1', 3600, function () use ($query) {
+        //     return $query->paginate(20);
+        // });
 
         return view('books.index', compact('books'));
     }

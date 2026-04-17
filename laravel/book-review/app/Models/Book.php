@@ -57,4 +57,19 @@ class Book extends Model
     {
         return $query->withAvg('reviews', 'rating')->orderBy('reviews_avg_rating', 'desc');
     }
+
+    static function booted()
+    {
+        // clear cache when a book is created, updated, or deleted
+        static::saved(function ($book) {
+            cache()->forget('books_index_1');
+        });
+        static::deleted(function ($book) {
+            cache()->forget('books_index_1');
+        });
+        static::updated(function ($book) {
+            cache()->forget('books_index_1');
+        });
+        return parent::booted();
+    }
 }
