@@ -29,13 +29,15 @@ class BookController extends Controller
             $filter = $request->input('filter');
 
             if ($filter === 'highest_reviewed') {
-                $query->mostReviewedBooks(); // scope
+                $query->mostReviewedBooks()->WithcountRatings(); // scope
             } elseif ($filter === 'highest_rated') {
-                $query->highestRatedBooks(); // scope
+                $query->highestRatedBooks()->WithCountReviews(); // scope
             }
         }
         // Default ordering (optional)
         if (!$request->filled('filter')) {
+            $query->WithCountReviews(); // default to most reviewed if no filter is applied
+            $query->WithcountRatings(); // default to highest rated if no filter is applied
             $query->latest(); // or any default order
         }
 
@@ -90,6 +92,10 @@ class BookController extends Controller
      */
     public function show(Book $book)
     {
+        // $query = Book::query()->select(['id', 'title', 'author', 'created_at']);
+        // $book = $query->withCount('reviews')->withAvg('reviews', 'rating')->findOrFail($book->id);
+
+        $book->loadCount('reviews')->loadAvg('reviews', 'rating');
         return view('books.show', compact('book'));
     }
 

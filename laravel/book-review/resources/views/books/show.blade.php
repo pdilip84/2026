@@ -12,10 +12,9 @@
                     <p class="text-gray-700 dark:text-gray-300 mb-4">Author: {{ $book->author }}</p>
                     <p class="text-gray-700 dark:text-gray-300 mb-4">{{ $book->description }}</p>
                     <p class="text-gray-700 dark:text-gray-300 mb-4">Published on {{ $book->created_at->format('F j, Y') }}</p>
-                    <div class="book-rating">
-                        3.5 out of 5 reviews</div>
-                    <div class="book-review-count">
-                        10 reviews</div>
+                    <div class="book-rating">Rating: {{ number_format($book->reviews_avg_rating, 1) ?? 'No ratings yet' }}</div>
+                    <div class="book-review-count">Total Reviews:
+                        {{ $book->reviews_count ?? 'No reviews yet' }} reviews</div>
                 </div>
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <a href="{{ route('books.index') }}" class="text-blue-500 hover:underline ">Back to Book List</a>

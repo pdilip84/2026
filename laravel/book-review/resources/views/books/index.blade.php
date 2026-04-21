@@ -41,42 +41,43 @@
                         </div>
                     </div>
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                    <ul>
-                        @foreach($books as $book)
-                            <li class="mb-4 border-b pb-4">
-                            <div class="book-item">
-                                <div class="book-id">
-                                    ID: {{ $book->id }}
-                                </div>
-                                <div class="flex flex-wrap items-center justify-between">
-                                <div class="w-full flex-grow sm:w-auto">
-                                    <a href="{{ route('books.show', $book) }}" class="book-title">{{ $book->title }}</a>
-                                </div>
-                                <div class="w-full sm:w-auto mt-2 sm:mt-0">
-                                    <span class="book-author">by {{ $book->author }}</span>
-                                </div>
-                                @if ($book->reviews_count > 0)
-                                <div>
-                                    <div class="book-rating">
-                                        {{-- @php
-                                            dd($book);
-                                        @endphp --}}
-                                    {{ $book->reviews_count }} reviews
-                                    </div>
-                                </div>
-                                @endif
-                                @if ($book->reviews_avg_rating > 0)
-                                <div>
-                                    <div class="book-rating">
-                                    {{ number_format($book->reviews_avg_rating, 1)   }}/5
-                                    </div>
-                                </div>
-                                @endif
-                                </div>
-                            </div>
-                            </li>
-                        @endforeach
-                    </ul>
+                    <div class="overflow-x-auto">
+                        <table class="w-full border-collapse text-start">
+                            <thead class="text-start">
+                                <tr class="bg-gray-100 dark:bg-gray-700 border-b-2 border-gray-300 dark:border-gray-600">
+                                    <th class="w-2/5 px-4 py-3 text-start font-bold">Book Name</th>
+                                    <th class="w-1/5 px-4 py-3 text-start font-bold">Author</th>
+                                    <th class="w-1/5 px-4 py-3 text-start font-bold">Total Reviews</th>
+                                    <th class="w-1/5 px-4 py-3 text-start font-bold">Average Ratings</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($books as $book)
+                                    <tr class="border-b border-gray-200 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 transition">
+                                        <td class="w-2/5 px-4 py-3">
+                                            <a href="{{ route('books.show', $book) }}" class="book-title font-semibold text-blue-600 dark:text-blue-400 hover:underline">{{ $book->title }}</a>
+                                            <div class="text-xs text-gray-500 dark:text-gray-400 mt-1">ID: {{ $book->id }}</div>
+                                        </td>
+                                        <td class="w-1/5 px-4 py-3 text-gray-700 dark:text-gray-300">{{ $book->author }}</td>
+                                        <td class="w-1/5 px-4 py-3 text-gray-700 dark:text-gray-300">
+                                            @if ($book->reviews_count > 0)
+                                                {{ $book->reviews_count }} reviews
+                                            @else
+                                                <span class="text-gray-500 dark:text-gray-400">No reviews</span>
+                                            @endif
+                                        </td>
+                                        <td class="w-1/5 px-4 py-3 text-gray-700 dark:text-gray-300">
+                                            @if ($book->reviews_avg_rating > 0)
+                                                {{ number_format($book->reviews_avg_rating, 1) }}/5
+                                            @else
+                                                <span class="text-gray-500 dark:text-gray-400">No rating</span>
+                                            @endif
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     {{ $books->withQueryString()->links() }}

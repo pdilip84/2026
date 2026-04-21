@@ -36,6 +36,18 @@ class Book extends Model
         return $query->where('author', 'like', '%Dr.%');
     }
 
+    // scope to count reviews and average rating for each book in book list page
+    public function scopeWithCountReviews($query)
+    {
+        return $query->withCount('reviews');
+    }
+
+    // scope to count average rating for each book in book list page
+    public function scopeWithcountRatings($query)
+    {
+        return $query->withAvg('reviews', 'rating');
+    }
+
     /*
     SELECT reviews.book_id, count(reviews.rating) as total
     FROM reviews
