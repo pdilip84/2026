@@ -49,30 +49,34 @@
                                     <th class="w-1/5 px-4 py-3 text-start font-bold">Author</th>
                                     <th class="w-1/5 px-4 py-3 text-start font-bold">Total Reviews</th>
                                     <th class="w-1/5 px-4 py-3 text-start font-bold">Average Ratings</th>
+                                    <th class="w-1/5 px-4 py-3 text-start font-bold">Created Date</th>
+                                    <th class="w-1/5 px-4 py-3 text-start font-bold">Last Updated</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach($books as $book)
                                     <tr class="border-b border-gray-200 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 transition">
-                                        <td class="w-2/5 px-4 py-3">
+                                        <td class="w-2/5 px-4 py-4">
                                             <a href="{{ route('books.show', $book) }}" class="book-title font-semibold text-blue-600 dark:text-blue-400 hover:underline">{{ $book->title }}</a>
                                             <div class="text-xs text-gray-500 dark:text-gray-400 mt-1">ID: {{ $book->id }}</div>
                                         </td>
-                                        <td class="w-1/5 px-4 py-3 text-gray-700 dark:text-gray-300">{{ $book->author }}</td>
-                                        <td class="w-1/5 px-4 py-3 text-gray-700 dark:text-gray-300">
+                                        <td class="w-1/5 px-4 py-4 text-gray-700 dark:text-gray-300">{{ $book->author }}</td>
+                                        <td class="w-1/5 px-4 py-4 text-gray-700 dark:text-gray-300">
                                             @if ($book->reviews_count > 0)
                                                 {{ $book->reviews_count }} reviews
                                             @else
                                                 <span class="text-gray-500 dark:text-gray-400">No reviews</span>
                                             @endif
                                         </td>
-                                        <td class="w-1/5 px-4 py-3 text-gray-700 dark:text-gray-300">
+                                        <td class="w-1/5 px-4 py-4 text-gray-700 dark:text-gray-300">
                                             @if ($book->reviews_avg_rating > 0)
                                                 {{ number_format($book->reviews_avg_rating, 1) }}/5
                                             @else
                                                 <span class="text-gray-500 dark:text-gray-400">No rating</span>
                                             @endif
                                         </td>
+                                        <td class="w-1/5 px-4 py-4 text-gray-700 dark:text-gray-300">{{ date_format($book->created_at, 'd-m-y') }}</td>
+                                        <td class="w-1/5 px-4 py-4 text-gray-700 dark:text-gray-300">{{ date_format($book->updated_at, 'd-m-y') }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>

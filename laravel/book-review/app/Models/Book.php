@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Book extends Model
 {
     use HasFactory;
-    protected $fillable = ['title', 'author'];
+    protected $fillable = ['title', 'author', 'created_at'];
 
     public function reviews()
     {

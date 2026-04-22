@@ -11,7 +11,8 @@
                     <h1 class="text-2xl font-bold mb-4">{{ $book->title }}</h1>
                     <p class="text-gray-700 dark:text-gray-300 mb-4">Author: {{ $book->author }}</p>
                     <p class="text-gray-700 dark:text-gray-300 mb-4">{{ $book->description }}</p>
-                    <p class="text-gray-700 dark:text-gray-300 mb-4">Published on {{ $book->created_at->format('F j, Y') }}</p>
+                    <p class="text-gray-700 dark:text-gray-300 mb-4">Created/published on {{ $book->created_at->format('F j, Y') }}</p>
+                    <p class="text-gray-700 dark:text-gray-300 mb-4">Last updated on {{ $book->updated_at->format('F j, Y') }}</p>
                     <div class="book-rating">Rating: {{ number_format($book->reviews_avg_rating, 1) ?? 'No ratings yet' }}</div>
                     <div class="book-review-count">Total Reviews:
                         {{ $book->reviews_count ?? 'No reviews yet' }} reviews</div>

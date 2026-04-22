@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\BookRequest;
 use App\Models\Book;
 use Illuminate\Http\Request;
 
@@ -13,7 +14,7 @@ class BookController extends Controller
     public function index(Request $request)
     {
         // Start with base query
-        $query = Book::query()->select(['id', 'title', 'author', 'published_date']);
+        $query = Book::query()->select(['id', 'title', 'author', 'created_at', 'updated_at']);
 
         // Apply search (if exists)
         if ($request->filled('search')) {
@@ -110,9 +111,13 @@ class BookController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(BookRequest $request, string $id)
     {
-        //
+        $book = Book::findOrFail($id);
+
+        $book->update($request->validated());
+
+        return redirect()->route('books.show', $book)->with('success', 'Book updated successfully.');
     }
 
     /**
