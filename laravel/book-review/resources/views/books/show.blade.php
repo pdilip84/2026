@@ -20,6 +20,7 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <a href="{{ route('books.index') }}" class="text-blue-500 hover:underline ">Back to Book List</a>
                     <a href="{{ route('books.edit', $book->id) }}" class="text-blue-500 hover:underline ml-4 px-4">Edit Book</a>
+                    <a href="{{ route('books.review.create', $book) }}" class="text-green-500 hover:underline ml-4 px-4">Add Review</a>
                     <form action="{{ route('books.destroy', $book) }}" method="POST" class="inline-block">
                         @csrf
                         @method('DELETE')

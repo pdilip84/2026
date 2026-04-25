@@ -96,7 +96,8 @@ class BookController extends Controller
         // $query = Book::query()->select(['id', 'title', 'author', 'created_at']);
         // $book = $query->withCount('reviews')->withAvg('reviews', 'rating')->findOrFail($book->id);
 
-        $book->loadCount('reviews')->loadAvg('reviews', 'rating');
+        // $book->loadCount('reviews')->loadAvg('reviews', 'rating')->orderBy('created_at', 'asc');
+        $book->loadCount('reviews')->loadAvg('reviews', 'rating')->orderBy('created_at', 'asc');
         return view('books.show', compact('book'));
     }
 

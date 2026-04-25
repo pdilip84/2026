@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\ReviewController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -33,3 +34,4 @@ store	books.store	/books
 update	books.update	/books/{id}
 */
 Route::resource('books', BookController::class);
+Route::resource('books.review', ReviewController::class)->only('create', 'store');
