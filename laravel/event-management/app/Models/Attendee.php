@@ -9,4 +9,14 @@ class Attendee extends Model
 {
     /** @use HasFactory<\Database\Factories\AttendeeFactory> */
     use HasFactory;
+
+    public function event()
+    {
+        return $this->belongsTo(Event::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

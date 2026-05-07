@@ -9,4 +9,9 @@ class Event extends Model
 {
     /** @use HasFactory<\Database\Factories\EventFactory> */
     use HasFactory;
+
+    public function attendees()
+    {
+        return $this->hasMany(Attendee::class);
+    }
 }
