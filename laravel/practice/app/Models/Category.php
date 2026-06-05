@@ -1,0 +1,24 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class Category extends Model
+{
+    /** @use HasFactory<\Database\Factories\CategoryFactory> */
+    use HasFactory;
+
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
+    //category with products count
+    //withmaxproducts
+    //withnoproducts
+    public function scopeFindByName($query, $name)
+    {
+        return $query->where('name', 'like', '%' . $name . '%');
+    }
+}
