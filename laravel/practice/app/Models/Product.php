@@ -30,6 +30,11 @@ class Product extends Model
     }
 
     //instock
+    public function ScopeInstock($query)
+    {
+        return $query->where('stock', '>', 0);
+    }
+
     //outstock
     //highpriced
     //cheap

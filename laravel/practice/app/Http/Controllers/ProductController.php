@@ -66,4 +66,14 @@ class ProductController extends Controller
         $product->delete();
         return redirect()->route('products.index')->with('success', 'Product deleted successfully');
     }
+
+    public function instock()
+    {
+        // $products = Product::Instock()->paginate(10);
+        // cache the result for 60 seconds
+        $products = cache()->remember('products_instock', 60, function () {
+            return Product::Instock()->paginate(10);
+        });
+        return view('product.instock', ['products' => $products]);
+    }
 }
