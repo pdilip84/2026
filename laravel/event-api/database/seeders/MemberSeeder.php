@@ -13,5 +13,6 @@ class MemberSeeder extends Seeder
     public function run(): void
     {
         \App\Models\Member::factory(100)->create();
+        \App\Models\Member::factory()->createOrganizerEntries();
     }
 }

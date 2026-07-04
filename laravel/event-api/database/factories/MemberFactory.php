@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Event;
 use App\Models\Member;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -26,5 +27,30 @@ class MemberFactory extends Factory
             'created_at' => now(),
             'updated_at' => now(),
         ];
+    }
+    // create a state for the factory to create a member which is the organizer of the event
+    public function organizer(): Factory
+    {
+        return $this->state(function (array $attributes) {
+            $event = \App\Models\Event::find($attributes['event_id'] ?? null)
+                ?? \App\Models\Event::inRandomOrder()->first()
+                ?? \App\Models\Event::factory()->create();
+
+            return [
+                'user_id' => $event->organizer_id,
+                'event_id' => $event->id,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ];
+        });
+    }
+
+    public function createOrganizerEntries(): void
+    {
+        Event::all()->each(function ($event) {
+            $this->organizer()->create([
+                'event_id' => $event->id,
+            ]);
+        });
     }
 }
