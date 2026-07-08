@@ -16,6 +16,9 @@ class EventController extends BaseController
     {
         // protecting some methods using sanctum middleware
         $this->middleware('auth:sanctum')->only(['store', 'update', 'destroy']);
+
+        //apply policy to the resource controller
+        // $this->authorizeResource(Event::class, 'event');
     }
 
     public function index()
@@ -58,6 +61,7 @@ class EventController extends BaseController
      */
     public function update(Request $request, Event $event)
     {
+        $this->authorize('update', $event);
         $data = $request->validate([
             'name' => 'sometimes|required|string|max:255',
             'start_time' => 'sometimes|required|date',
