@@ -1,0 +1,16 @@
+{
+  "name": "dilip-parmar/0709",
+  "type": "project",
+  "license": "Open",
+  "autoload": {
+    "psr-4": {
+      "DilipParmar\\project0709\\": "src/"
+    }
+  },
+  "authors": [
+    {
+      "name": "Dilipsinh Parmar"
+    }
+  ],
+  "require": {}
+}

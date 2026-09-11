@@ -1,0 +1,16 @@
+{
+    "name": "oops/concept0909",
+    "description": "OOPS basic concept revision",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Oops\\Concept0909\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Dilipsinh"
+        }
+    ],
+    "require": {}
+}

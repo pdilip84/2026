@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tense Translator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Gujarati:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f7f7f8;
+    --card-bg: #ffffff;
+    --border: #dcdcdc;
+    --text: #1f2328;
+    --muted: #6b7280;
+    --accent: #2563eb;
+    --accent-hover: #1d4ed8;
+    --error-bg: #fef2f2;
+    --error-border: #fca5a5;
+    --error-text: #991b1b;
+    --header-bg: #f1f5f9;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.5;
+    padding: 16px;
+  }
+
+  .container {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  h1 {
+    font-size: 1.6rem;
+    margin: 0 0 4px 0;
+  }
+
+  .subtitle {
+    color: var(--muted);
+    margin: 0 0 20px 0;
+    font-size: 0.95rem;
+  }
+
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px;
+    margin-bottom: 16px;
+  }
+
+  label {
+    display: block;
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-bottom: 6px;
+  }
+
+  select,
+  textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-family: inherit;
+    background: #fff;
+    color: var(--text);
+  }
+
+  textarea {
+    min-height: 90px;
+    resize: vertical;
+  }
+
+  .field {
+    margin-bottom: 12px;
+  }
+
+  .hint {
+    font-size: 0.8rem;
+    color: var(--muted);
+    margin-top: 6px;
+  }
+
+  button.primary {
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 18px;
+    font-size: 0.95rem;
+    cursor: pointer;
+    font-weight: 600;
+  }
+  button.primary:hover { background: var(--accent-hover); }
+  button.primary:disabled {
+    background: #93a5c9;
+    cursor: not-allowed;
+  }
+
+  .status {
+    margin-top: 10px;
+    font-size: 0.9rem;
+    color: var(--muted);
+  }
+
+  .error-box {
+    margin-top: 10px;
+    background: var(--error-bg);
+    border: 1px solid var(--error-border);
+    color: var(--error-text);
+    padding: 10px 12px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    white-space: pre-wrap;
+  }
+
+  .result-meta {
+    margin-bottom: 14px;
+    font-size: 0.9rem;
+    background: var(--header-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 12px;
+  }
+  .result-meta > div + div { margin-top: 4px; }
+  .result-meta strong { color: var(--text); }
+  .result-meta .base {
+    color: var(--accent);
+    font-weight: 600;
+  }
+  .result-meta .gu {
+    display: block;
+    margin-top: 2px;
+  }
+
+  .table-wrap {
+    overflow-x: auto;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+  }
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    min-width: 820px;
+    font-size: 0.88rem;
+  }
+
+  th, td {
+    border: 1px solid var(--border);
+    padding: 10px;
+    text-align: left;
+    vertical-align: top;
+  }
+
+  th {
+    background: var(--header-bg);
+    position: sticky;
+    top: 0;
+    font-size: 0.82rem;
+  }
+
+  tr:nth-child(even) td {
+    background: #fafafa;
+  }
+
+  .formula {
+    color: var(--muted);
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.8rem;
+  }
+
+  .example-en {
+    display: block;
+  }
+
+  .gu {
+    display: block;
+    margin-top: 5px;
+    padding-top: 5px;
+    border-top: 1px dashed var(--border);
+    font-family: 'Noto Sans Gujarati', 'Nirmala UI', 'Shruti', sans-serif;
+    color: #0f766e;
+    font-size: 0.95em;
+  }
+
+  .hl-red { color: #dc2626; font-weight: 600; }
+  .hl-red-bold { color: #dc2626; font-weight: 700; }
+  .hl-green-bold { color: #14532d; font-weight: 700; }
+
+  .legend {
+    margin-top: 12px;
+    font-size: 0.82rem;
+    color: var(--muted);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+  .legend span.hl-red-bold, .legend span.hl-green-bold { font-size: inherit; }
+
+  footer {
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.8rem;
+    margin-top: 24px;
+  }
+
+  @media (max-width: 600px) {
+    h1 { font-size: 1.35rem; }
+    body { padding: 10px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>Tense Translator</h1>
+  <p class="subtitle">Type a sentence in Gujarati script or basic/broken English. Gemini will translate it and rewrite it across all English tenses, active &amp; passive.</p>
+
+  <div class="card">
+    <div class="field">
+      <label for="sentenceInput">Your sentence</label>
+      <textarea id="sentenceInput" placeholder="e.g. hu school jau chu   OR   he go market yesterday"></textarea>
+    </div>
+    <div class="field">
+      <label for="modelSelect">Model</label>
+      <select id="modelSelect">
+        <option value="gemini-3.6-flash">gemini-3.6-flash</option>
+        <option value="gemini-3.7-flash">gemini-3.7-flash</option>
+        <option value="gemini-3.8-flash">gemini-3.8-flash (newest, can be busy)</option>
+      </select>
+      <p class="hint">If one model reports it's overloaded or unavailable, try another from this list.</p>
+    </div>
+    <button class="primary" id="submitBtn" type="button">Translate</button>
+    <div class="status" id="statusLine"></div>
+    <div class="error-box" id="errorBox" style="display:none;"></div>
+  </div>
+
+  <div class="card" id="resultCard" style="display:none;">
+    <div class="result-meta">
+      <div><strong>Original input:</strong> <span id="origText"></span></div>
+      <div>
+        <strong>Base translation:</strong> <span class="base" id="baseText"></span>
+        <span class="gu" id="baseTextGu" lang="gu"></span>
+      </div>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Tense / Structure</th>
+            <th>Active Voice Formula</th>
+            <th>Active Voice Example</th>
+            <th>Passive Voice Formula</th>
+            <th>Passive Voice Example</th>
+          </tr>
+        </thead>
+        <tbody id="resultBody"></tbody>
+      </table>
+    </div>
+    <div class="legend">
+      <span><span class="hl-red-bold">being</span> → Continuous tenses always add "being" in the passive.</span>
+      <span><span class="hl-green-bold">has/have</span> / <span class="hl-green-bold">been</span> → Perfect tenses always use "has/have" (active) and "been" (passive).</span>
+    </div>
+  </div>
+
+  <footer>No key to enter — this page talks to a private server-side proxy that holds the Gemini API key.</footer>
+</div>
+
+<script>
+(function () {
+  const TENSE_ROWS = [
+    { tense: "Simple Present", active_formula: "Subject + V1(s/es)", passive_formula: "Object + am/is/are + V3" },
+    { tense: "Present Continuous", active_formula: "Subject + am/is/are + V-ing", passive_formula: "Object + am/is/are + being + V3" },
+    { tense: "Present Perfect", active_formula: "Subject + has/have + V3", passive_formula: "Object + has/have + been + V3" },
+    { tense: "Simple Past", active_formula: "Subject + V2", passive_formula: "Object + was/were + V3" },
+    { tense: "Past Continuous", active_formula: "Subject + was/were + V-ing", passive_formula: "Object + was/were + being + V3" },
+    { tense: "Past Perfect", active_formula: "Subject + had + V3", passive_formula: "Object + had + been + V3" },
+    { tense: "Simple Future", active_formula: "Subject + will + V1", passive_formula: "Object + will be + V3" },
+    { tense: "Future Perfect", active_formula: "Subject + will have + V3", passive_formula: "Object + will have + been + V3" },
+    { tense: "Basic Modals (can/should/must/may)", active_formula: "Subject + modal + V1", passive_formula: "Object + modal + be + V3" },
+    { tense: "Past Modals (should have/could have)", active_formula: "Subject + modal + have + V3", passive_formula: "Object + modal + have + been + V3" },
+    { tense: "Future Compulsion (will have to)", active_formula: "Subject + will have to + V1", passive_formula: "Object + will have to be + V3" }
+  ];
+
+  // Which words to color-highlight inside each tense's formula cells, so the
+  // underlying rule (e.g. "Continuous always needs 'being' in passive") jumps
+  // out visually. Keyed by the canonical tense name from TENSE_ROWS above.
+  const HIGHLIGHT_RULES = {
+    "Present Continuous": { passive: [{ word: 'being', cls: 'hl-red-bold' }] },
+    "Past Continuous": { passive: [{ word: 'being', cls: 'hl-red-bold' }] },
+    "Present Perfect": {
+      active: [{ word: 'has/have', cls: 'hl-green-bold' }],
+      passive: [{ word: 'has/have', cls: 'hl-green-bold' }, { word: 'been', cls: 'hl-green-bold' }]
+    },
+    "Past Perfect": {
+      passive: [{ word: 'been', cls: 'hl-green-bold' }]
+    },
+    "Future Perfect": {
+      active: [{ word: 'have', cls: 'hl-green-bold' }],
+      passive: [{ word: 'have', cls: 'hl-green-bold' }, { word: 'been', cls: 'hl-green-bold' }]
+    }
+  };
+
+  function escapeHtml(str) {
+    return String(str == null ? '' : str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;');
+  }
+
+  // Wraps the first match of each rule's word (whole-word, case-insensitive)
+  // in a colored <span>. Text is escaped first so this is safe even if the
+  // formula text ever contains stray characters.
+  function applyHighlights(text, rules) {
+    let html = escapeHtml(text);
+    if (!rules) return html;
+    rules.forEach(function (rule) {
+      const escapedWord = rule.word.replace(/[.*+?^${}()|[\]\\/]/g, '\\$&');
+      const re = new RegExp('\\b(' + escapedWord + ')\\b', 'i');
+      html = html.replace(re, '<span class="' + rule.cls + '">$1</span>');
+    });
+    return html;
+  }
+
+  function highlightTenseName(name) {
+    if (/continuous/i.test(name)) {
+      return applyHighlights(name, [{ word: 'Continuous', cls: 'hl-red' }]);
+    }
+    return escapeHtml(name);
+  }
+
+  const modelSelect = document.getElementById('modelSelect');
+  const sentenceInput = document.getElementById('sentenceInput');
+  const submitBtn = document.getElementById('submitBtn');
+  const statusLine = document.getElementById('statusLine');
+  const errorBox = document.getElementById('errorBox');
+  const resultCard = document.getElementById('resultCard');
+  const resultBody = document.getElementById('resultBody');
+  const origText = document.getElementById('origText');
+  const baseText = document.getElementById('baseText');
+  const baseTextGu = document.getElementById('baseTextGu');
+
+  // Only the model preference is worth remembering locally; no API key
+  // lives in the browser at all anymore.
+  const savedModel = localStorage.getItem('tenseTranslator_model');
+  if (savedModel) modelSelect.value = savedModel;
+  modelSelect.addEventListener('change', function () {
+    localStorage.setItem('tenseTranslator_model', modelSelect.value);
+  });
+
+  function showError(msg) {
+    errorBox.textContent = msg;
+    errorBox.style.display = 'block';
+  }
+
+  function clearError() {
+    errorBox.style.display = 'none';
+    errorBox.textContent = '';
+  }
+
+  // Builds a cell showing the English example on top and its Gujarati
+  // translation stacked underneath (separated by a dashed divider).
+  function buildExampleCell(englishText, gujaratiText) {
+    const td = document.createElement('td');
+
+    const en = document.createElement('span');
+    en.className = 'example-en';
+    en.textContent = englishText || '—';
+    td.appendChild(en);
+
+    if (gujaratiText) {
+      const gu = document.createElement('span');
+      gu.className = 'gu';
+      gu.lang = 'gu';
+      gu.textContent = gujaratiText;
+      td.appendChild(gu);
+    }
+
+    return td;
+  }
+
+  function renderResult(data) {
+    origText.textContent = data.original_input || sentenceInput.value.trim();
+    baseText.textContent = data.base_translation || '';
+    baseTextGu.textContent = data.base_translation_gu || '';
+
+    resultBody.innerHTML = '';
+    const rows = Array.isArray(data.rows) ? data.rows : [];
+
+    TENSE_ROWS.forEach(function (defRow, idx) {
+      const r = rows[idx] || {};
+      const tr = document.createElement('tr');
+      const rules = HIGHLIGHT_RULES[defRow.tense];
+
+      const tdTense = document.createElement('td');
+      tdTense.innerHTML = highlightTenseName(r.tense || defRow.tense);
+      tr.appendChild(tdTense);
+
+      const tdActiveFormula = document.createElement('td');
+      tdActiveFormula.className = 'formula';
+      tdActiveFormula.innerHTML = applyHighlights(r.active_formula || defRow.active_formula, rules && rules.active);
+      tr.appendChild(tdActiveFormula);
+
+      tr.appendChild(buildExampleCell(r.active_example, r.active_example_gu));
+
+      const tdPassiveFormula = document.createElement('td');
+      tdPassiveFormula.className = 'formula';
+      tdPassiveFormula.innerHTML = applyHighlights(r.passive_formula || defRow.passive_formula, rules && rules.passive);
+      tr.appendChild(tdPassiveFormula);
+
+      tr.appendChild(buildExampleCell(r.passive_example, r.passive_example_gu));
+
+      resultBody.appendChild(tr);
+    });
+
+    resultCard.style.display = 'block';
+  }
+
+  async function handleSubmit() {
+    clearError();
+    const sentence = sentenceInput.value.trim();
+    const model = modelSelect.value;
+
+    if (!sentence) {
+      showError('Please type a sentence first.');
+      return;
+    }
+
+    submitBtn.disabled = true;
+    statusLine.textContent = 'Translating…';
+
+    try {
+      const res = await fetch('/api/translate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ sentence: sentence, model: model })
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data && data.error ? data.error : ('Request failed (' + res.status + ')'));
+      }
+
+      renderResult(data);
+      statusLine.textContent = 'Done.';
+    } catch (err) {
+      console.error(err);
+      showError(err && err.message ? err.message : String(err));
+      statusLine.textContent = '';
+    } finally {
+      submitBtn.disabled = false;
+    }
+  }
+
+  submitBtn.addEventListener('click', handleSubmit);
+  sentenceInput.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) {
+      handleSubmit();
+    }
+  });
+})();
+</script>
+</body>
+</html>

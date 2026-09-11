@@ -1,0 +1,22 @@
+{
+  "name": "dilip/basics-of-phpunit",
+  "description": "a working model of basic phpunit package",
+  "type": "project",
+  "require": {
+    "fakerphp/faker": "^1.24"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^11.5",
+    "phpstan/phpstan": "^2.2"
+  },
+  "autoload": {
+    "psr-4": {
+      "Dilip\\BasicsOfPhpunit\\": "src/"
+    }
+  },
+  "authors": [
+    {
+      "name": "Dilipkumar"
+    }
+  ]
+}

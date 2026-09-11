@@ -9,6 +9,13 @@ class Student extends Model
 {
     /** @use HasFactory<\Database\Factories\StudentFactory> */
     use HasFactory;
+
+    protected $fillable = [
+        'name',
+        'grade',
+        'school_id',
+    ];
+
     // define a relationship between students and schools
     public function school()
     {

@@ -1,3 +1,31 @@
+# Node
 node_modules/
+
+# Composer
+vendor/
+
+# Environment files
 .env
+.env.*
+!.env.example
+
+# macOS
 .DS_Store
+
+# Logs
+*.log
+
+# IDE / Editor
+.idea/
+.vscode/
+
+# OS / editor temporary files
+*.swp
+*.swo
+*~
+
+# PHP
+.phpunit.result.cache
+
+# Build / cache
+.php-cs-fixer.cache

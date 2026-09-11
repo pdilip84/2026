@@ -1,0 +1,23 @@
+{
+    "name": "oops/concept",
+    "description": "OOPS concept revision",
+    "type": "project",
+    "require": {
+        "fakerphp/faker": "^1.24"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^11.5",
+        "phpstan/phpstan": "^2.2",
+        "friendsofphp/php-cs-fixer": "^3.95"
+    },
+    "autoload": {
+        "psr-4": {
+            "Oops\\Concept\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Dilipsinh Parmar"
+        }
+    ]
+}

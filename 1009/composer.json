@@ -1,0 +1,23 @@
+{
+    "name": "test-demonstration/phpunit",
+    "description": "Demonstration of phpunit test package",
+    "type": "project",
+    "require": {
+        "fakerphp/faker": "^1.24",
+        "monolog/monolog": "^3.12"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^11.5",
+        "phpstan/phpstan": "^2.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "TestDemonstration\\Phpunit\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Dilipkumar Parmar"
+        }
+    ]
+}
